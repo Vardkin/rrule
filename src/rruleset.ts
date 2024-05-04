@@ -138,6 +138,18 @@ export class RRuleSet extends RRule {
     return this._exdate.map((e) => new Date(e.getTime()))
   }
 
+  /**
+   * Replace the current rrule(s) of this set.
+   *
+   * @param {RRule}
+   */
+  replaceRrule(rrule: RRule) {
+    // remove all rrules from the _rrule collection
+    this._rrule.splice(0, this._rrule.length);
+
+    _addRule(rrule, this._rrule)
+  }
+
   valueOf() {
     let result: string[] = []
 
